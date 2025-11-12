@@ -4,38 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taco Financiero - Calculadora de Fechas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: white;
             color: black;
-            margin: 20px;
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
         }
-        h1, h2 {
-            color: black;
-        }
-        input, button {
-            margin: 5px;
-            padding: 8px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #555;
-        }
-        .section {
-            margin-bottom: 30px;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
         }
         .output {
             font-weight: bold;
@@ -44,35 +22,86 @@
     </style>
 </head>
 <body>
-    <h1>Taco Financiero - Calculadora de Fechas</h1>
-    
-    <div class="section">
-        <h2>Fechas Futuras desde Fecha Inicial</h2>
-        <label for="initialDate">Fecha Inicial:</label>
-        <input type="date" id="initialDate">
-        <button onclick="calculateFutureDates()">Calcular Fechas Futuras</button>
-        <div id="futureDatesOutput" class="output"></div>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Taco Financiero - Calculadora de Fechas</h1>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title mb-0">Fechas Futuras desde Fecha Inicial</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="initialDate" class="form-label">Fecha Inicial:</label>
+                                <input type="date" class="form-control" id="initialDate">
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" onclick="calculateFutureDates()">Calcular Fechas Futuras</button>
+                            </div>
+                        </div>
+                        <div id="futureDatesOutput" class="output mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title mb-0">Diferencia entre Dos Fechas (en Días)</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-5">
+                                <label for="date1" class="form-label">Fecha 1:</label>
+                                <input type="date" class="form-control" id="date1">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="date2" class="form-label">Fecha 2:</label>
+                                <input type="date" class="form-control" id="date2">
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" onclick="calculateDifference()">Calcular Diferencia</button>
+                            </div>
+                        </div>
+                        <div id="differenceOutput" class="output mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title mb-0">Agregar Días a Fecha Inicial</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-5">
+                                <label for="initialDateAdd" class="form-label">Fecha Inicial:</label>
+                                <input type="date" class="form-control" id="initialDateAdd">
+                            </div>
+                            <div class="col-md-5">
+                                <label for="daysToAdd" class="form-label">Días a Agregar:</label>
+                                <input type="number" class="form-control" id="daysToAdd" min="1">
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" onclick="addDays()">Calcular Fecha Final</button>
+                            </div>
+                        </div>
+                        <div id="addDaysOutput" class="output mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div class="section">
-        <h2>Diferencia entre Dos Fechas (en Días)</h2>
-        <label for="date1">Fecha 1:</label>
-        <input type="date" id="date1">
-        <label for="date2">Fecha 2:</label>
-        <input type="date" id="date2">
-        <button onclick="calculateDifference()">Calcular Diferencia</button>
-        <div id="differenceOutput" class="output"></div>
-    </div>
-    
-    <div class="section">
-        <h2>Agregar Días a Fecha Inicial</h2>
-        <label for="initialDateAdd">Fecha Inicial:</label>
-        <input type="date" id="initialDateAdd">
-        <label for="daysToAdd">Días a Agregar:</label>
-        <input type="number" id="daysToAdd" min="1">
-        <button onclick="addDays()">Calcular Fecha Final</button>
-        <div id="addDaysOutput" class="output"></div>
-    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
         function calculateFutureDates() {
@@ -83,11 +112,14 @@
             }
             const initialDate = new Date(initialDateInput);
             const periods = [30, 60, 90, 120, 180];
-            let output = '<h3>Fechas Calculadas:</h3><ul>';
+            let output = '<h5 class="mt-3">Fechas Calculadas:</h5><ul class="list-group list-group-flush">';
             periods.forEach(period => {
                 const futureDate = new Date(initialDate);
                 futureDate.setDate(futureDate.getDate() + period);
-                output += `<li>+${period} días: ${futureDate.toLocaleDateString('es-ES')}</li>`;
+                output += `<li class="list-group-item d-flex justify-content-between align-items-center">
+                    +${period} días
+                    <span class="badge bg-primary rounded-pill">${futureDate.toLocaleDateString('es-ES')}</span>
+                </li>`;
             });
             output += '</ul>';
             document.getElementById('futureDatesOutput').innerHTML = output;
@@ -104,7 +136,7 @@
             const date2 = new Date(date2Input);
             const diffTime = Math.abs(date2 - date1);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            document.getElementById('differenceOutput').innerHTML = `Diferencia: ${diffDays} días`;
+            document.getElementById('differenceOutput').innerHTML = `<div class="alert alert-info mt-3">${diffDays} días de diferencia</div>`;
         }
 
         function addDays() {
@@ -118,7 +150,7 @@
             const days = parseInt(daysInput);
             const finalDate = new Date(initialDate);
             finalDate.setDate(finalDate.getDate() + days);
-            document.getElementById('addDaysOutput').innerHTML = `Fecha Final: ${finalDate.toLocaleDateString('es-ES')}`;
+            document.getElementById('addDaysOutput').innerHTML = `<div class="alert alert-success mt-3">Fecha Final: ${finalDate.toLocaleDateString('es-ES')}</div>`;
         }
     </script>
 </body>
